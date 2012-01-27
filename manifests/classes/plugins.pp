@@ -125,6 +125,10 @@ class redmine::plugins {
 		'attachment_fu':
 			name => 'attachment_fu',
 			url => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/attachment_fu.git';
+
+    'periodic_tasks':
+      name => 'Redmine_Periodic_Task',
+      url => 'https://github.com/myneid/Redmine-Periodic-Task.git';
 	}
 
 	if $redmine::plugins != [] {
