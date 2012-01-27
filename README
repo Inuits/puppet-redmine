@@ -1,16 +1,21 @@
-This module is meant to deploy a complete redmine setup, including database(s) and webserver with config.
+Puppet Redmine module
+====
+
+This module is meant to deploy a redmine setup, including:
+* apache instance
+* vhost config
+* passenger integration
 
 This module should work on:
 * CentOS 5.4 and up
 * CentOS 6.x
 * Archlinux latest
+* Debian 6.0.x (Partial, lacks functional vhost config)
 
-Partial support for Debian 6.0.x, lacking vhost config for now.
-Support for ubuntu shouldn't be too hard considering most stuff is there for Debian.
-Might do it some time soon when I find some spare time.
+Requirements:
+* a database backend for redmine to use
 
 Dependencies:
-* mysql module: https://github.com/simonsd/puppet-mysql
 * apache module: https://github.com/simonsd/puppet-apache
 * vhost module: https://github.com/simonsd/puppet-vhost
 * passenger module: https://github.com/simonsd/puppet-passenger
@@ -19,5 +24,3 @@ NOTE:
 The redmine is installed from a tarball, included in the repo.
 It is based on the official 1.2.1 tarball, but is patched to allow for private comments on issues.
 More about the patch can be found here: http://www.redmine.org/issues/1554
-
-If I forgot anything, or plain simply screwed up, let me know.
