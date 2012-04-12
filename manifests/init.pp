@@ -2,8 +2,6 @@ import 'classes/*'
 import 'definitions/*'
 
 class redmine (
-	$servername,
-	$serveralias = [],
 	$production_db = 'redmine_production',
 	$devel_db = 'redmine_devel',
 	$dbuser = 'redmine',

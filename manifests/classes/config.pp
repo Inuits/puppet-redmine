@@ -24,21 +24,12 @@ class redmine::config {
 			provider => shell;
 	}
 
-	vhost {
-		'redmine':
-			documentroot => "${redmine::home}/public",
-			insecure => no,
-			ssl => on,
-			servername => "${redmine::servername}",
-			serveralias => "${redmine::serveralias}";
-	}
-
 	exec {
 		'session_store':
 			path => '/opt/ruby1.8/bin:/bin:/usr/bin',
 			cwd => '/usr/share/redmine/public',
 			provider => 'shell',
 			command => 'rake generate_session_store',
-			require => [ Package['gem_rails'], Vhost['redmine'] ];
+			require => Package['gem_rails'];
 	}
 }
