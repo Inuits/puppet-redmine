@@ -1,6 +1,3 @@
-import 'classes/*'
-import 'definitions/*'
-
 class redmine (
 	$production_db = 'redmine_production',
 	$devel_db = 'redmine_devel',
