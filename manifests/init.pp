@@ -28,7 +28,7 @@ class redmine (
   class {'::redmine::themes': }
 
   Exec {
-    path=>'/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin'
+    path => '/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin',
   }
 
 }

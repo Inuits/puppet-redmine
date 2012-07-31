@@ -2,12 +2,12 @@ class redmine::pre {
   @exec {
     'apt update':
       command => 'apt-get update',
-      path => '/usr/bin';
+      path    => '/usr/bin';
 
     'yum update':
       command => 'yum update -y',
       timeout => '0',
-      path => '/usr/bin';
+      path    => '/usr/bin';
   }
 
   case $::operatingsystem {
@@ -17,9 +17,9 @@ class redmine::pre {
 
   exec {
     'selinux_permissive':
-      path => '/bin:/usr/bin:/usr/sbin',
+      path    => '/bin:/usr/bin:/usr/sbin',
       command => 'setenforce permissive',
-      unless => 'sestatus | grep -E "(disabled|permissive)"',
-      onlyif => 'which setenforce';
+      unless  => 'sestatus | grep -E "(disabled|permissive)"',
+      onlyif  => 'which setenforce';
   }
 }

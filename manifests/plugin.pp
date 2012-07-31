@@ -2,13 +2,13 @@ define redmine::plugin (
   $name,
   $url,
   $plugin_dir = "$redmine::home/vendor/plugins",
-  $deps = [],
-  $gems = []
+  $deps       = [],
+  $gems       = []
 ) {
   exec {
     "install_plugin_$name":
       command => "ruby script/plugin install $url",
-      cwd => "$redmine::home",
+      cwd     => "$redmine::home",
       creates => "$plugin_dir/$name";
   }
 
@@ -18,8 +18,8 @@ define redmine::plugin (
       before => Exec["install_plugin_$name"];
     $gems:
       provider => gem,
-      ensure => present,
-      before => Exec["install_plugin_$name"];
+      ensure   => present,
+      before   => Exec["install_plugin_$name"];
   }
 
   if $deps != [] {
