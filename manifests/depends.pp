@@ -56,7 +56,7 @@ class redmine::depends {
       provider => gem,
       before => Exec['config_redmine_mysql_bootstrap'];
   }
-  
+
   case $::operatingsystem {
     default: {realize(Exec['extract_redmine'], File['/etc/redmine', '/etc/redmine/default', 'redmine_source'])}
     Debian: {realize(Package['redmine-mysql'])}
