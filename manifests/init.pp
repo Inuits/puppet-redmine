@@ -18,7 +18,6 @@ class redmine (
 ) {
   if ! defined(Class['::repos']) { include ::repos }
 
-  class {'::redmine::pre': } ->
   class {'::redmine::depends': } ->
   class {'::redmine::config': } ->
   class {'::redmine::dbconf':
