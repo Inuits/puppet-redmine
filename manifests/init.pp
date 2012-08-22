@@ -14,7 +14,8 @@ class redmine (
   $mail_port = '587',
   $mail_smtp = 'smtp.redmine.org',
   $mail_tls = 'true',
-  $themes = []
+  $themes = [],
+  $webserver_service = $::apache::params::service_name
 ) {
   if ! defined(Class['::repos']) { include ::repos }
 
