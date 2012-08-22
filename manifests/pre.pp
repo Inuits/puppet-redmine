@@ -15,11 +15,4 @@ class redmine::pre {
     Debian: {realize(Exec['apt update'])}
   }
 
-  exec {
-    'selinux_permissive':
-      path    => '/bin:/usr/bin:/usr/sbin',
-      command => 'setenforce permissive',
-      unless  => 'sestatus | grep -E "(disabled|permissive)"',
-      onlyif  => 'which setenforce';
-  }
 }
