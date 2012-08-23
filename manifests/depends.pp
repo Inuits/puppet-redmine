@@ -74,15 +74,15 @@ class redmine::depends {
     require => Package['redmine'],
   }
 
-	@exec {
-		'extract_redmine':
-			path => '/bin:/usr/bin',
-			cwd => '/usr/share',
-			provider => shell,
-			command => 'tar xzvf redmine-1.1.3.tar.gz && mv redmine{-1.1.3,}',
-			require => File['/usr/share/redmine-1.1.3.tar.gz'],
-			creates => '/usr/share/redmine';
-	}
+  @exec {
+    'extract_redmine':
+      path => '/bin:/usr/bin',
+      cwd => '/usr/share',
+      provider => shell,
+      command => 'tar xzvf redmine-1.1.3.tar.gz && mv redmine{-1.1.3,}',
+      require => File['/usr/share/redmine-1.1.3.tar.gz'],
+      creates => '/usr/share/redmine';
+  }
 
   @file {
     '/etc/redmine':
@@ -100,10 +100,10 @@ class redmine::depends {
       before    => Class['redmine::config'];
       # require => Exec['redmine_sources'],
 
-		'redmine_source':
-			ensure => present,
-			path => '/usr/share/redmine-1.1.3.tar.gz',
-			source => 'puppet:///modules/redmine/redmine.tar.gz';
+    'redmine_source':
+      ensure => present,
+      path => '/usr/share/redmine-1.1.3.tar.gz',
+      source => 'puppet:///modules/redmine/redmine.tar.gz';
 
-	}
+  }
 }
