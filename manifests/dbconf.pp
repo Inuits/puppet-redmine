@@ -5,7 +5,7 @@ class redmine::dbconf {
     cwd         => "$redmine::home",
     provider    => 'shell',
     command     => 'rake db:migrate',
-    require     => Mysql_db[$redmine::production_db],
+    require     => Mysql::db[$redmine::production_db],
     notify      => Service["$redmine::webserver_service"],
   }
   exec {'load_default_data':
@@ -14,7 +14,7 @@ class redmine::dbconf {
     cwd         => "$redmine::home",
     provider    => 'shell',
     command     => 'rake redmine:load_default_data',
-    require     => [ Mysql_db[$redmine::production_db], Exec['config_redmine_mysql_bootstrap'] ],
+    require     => [ Mysql::db[$redmine::production_db], Exec['config_redmine_mysql_bootstrap'] ],
     notify      => Service["$redmine::webserver_service"];
   }
 }
