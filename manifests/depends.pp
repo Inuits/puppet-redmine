@@ -3,7 +3,7 @@ class redmine::depends {
     redmine:
       ensure    => installed,
       name      => $::operatingsystem ? {
-        Centos    => 'redmine_client',
+        Centos    => 'redmine',
         Debian    => 'redmine',
         archlinux => 'redmine_client',
       },
@@ -57,16 +57,8 @@ class redmine::depends {
       before    => Exec['config_redmine_mysql_bootstrap'];
   }
 
-  case $::operatingsystem {
-    default: {
-      realize(
-        Exec['extract_redmine'],
-        File['/etc/redmine', '/etc/redmine/default', 'redmine_source']
-      )
-    }
-    Debian: {
-      realize(Package['redmine-mysql'])
-    }
+  if $::operatingsystem =~ /debian/ {
+    realize(Package['redmine-mysql'])
   }
 
   @package { 'redmine-mysql':
@@ -74,36 +66,4 @@ class redmine::depends {
     require => Package['redmine'],
   }
 
-  @exec {
-    'extract_redmine':
-      path => '/bin:/usr/bin',
-      cwd => '/usr/share',
-      provider => shell,
-      command => 'tar xzvf redmine-1.1.3.tar.gz && mv redmine{-1.1.3,}',
-      require => File['/usr/share/redmine-1.1.3.tar.gz'],
-      creates => '/usr/share/redmine';
-  }
-
-  @file {
-    '/etc/redmine':
-      ensure => directory,
-      owner  => root,
-      group  => root,
-      mode   => 0755,
-      before => File['/etc/redmine/default'];
-
-    '/etc/redmine/default':
-      ensure    => directory,
-      owner     => $apache::user,
-      group     => $apache::group,
-      mode      => 0755,
-      before    => Class['redmine::config'];
-      # require => Exec['redmine_sources'],
-
-    'redmine_source':
-      ensure => present,
-      path => '/usr/share/redmine-1.1.3.tar.gz',
-      source => 'puppet:///modules/redmine/redmine.tar.gz';
-
-  }
 }
