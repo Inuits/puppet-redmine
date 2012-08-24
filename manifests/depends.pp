@@ -1,7 +1,7 @@
 class redmine::depends {
   package {
     redmine:
-      ensure    => installed,
+      ensure    => $::redmine::version,
       name      => $::operatingsystem ? {
         Centos    => 'redmine',
         Debian    => 'redmine',
