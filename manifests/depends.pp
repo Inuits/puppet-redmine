@@ -9,6 +9,7 @@ class redmine::depends {
       },
       provider  => $::operatingsystem ? {
         default => "gem",
+        Centos  => 'yum',
         Debian  => "apt",
       },
       before    => Exec["config_redmine_mysql_bootstrap"];
