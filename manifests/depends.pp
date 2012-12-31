@@ -14,7 +14,10 @@ class redmine::depends {
       },
       # require => [ User['redmine'], Class['apache::packages', 'mysql::packages'] ],
       before    => Exec['config_redmine_mysql_bootstrap'],
-      notify    => Exec['config_redmine_mysql_bootstrap'];
+      notify    => Exec[
+        'config_redmine_mysql_bootstrap',
+        'session_store',
+      ],
 
     'gem_i18n':
       ensure   => '0.4.2',
