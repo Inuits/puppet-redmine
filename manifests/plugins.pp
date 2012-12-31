@@ -1,4 +1,9 @@
 class redmine::plugins {
+
+  Redmine::Plugin {
+    notify => Exec['db:migrate_plugins'],
+  }
+
   @redmine::plugin {
     'gitolite':
       name    => 'redmine_git_hosting',
@@ -140,6 +145,7 @@ class redmine::plugins {
         cwd         => "$redmine::home",
         path        => "$ruby::bin_dir",
         environment => 'RAILS_ENV=production',
+        refreshonly => true,
         require     => Redmine::Plugin[$redmine::plugins];
     }
   }
