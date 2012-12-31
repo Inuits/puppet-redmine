@@ -21,7 +21,7 @@ class redmine::config {
   exec {
     'chown redmine':
       command  => "chown -R ${redmine::user}:${redmine::group} ${redmine::home}",
-      onlyif   => "find ${::redmine::home} ! -user ${::redmine::user} -or ! -group ${::redmine::group}",
+      unless   => "find ${::redmine::home} ! -user ${::redmine::user} -or ! -group ${::redmine::group}",
       provider => 'shell';
   }
 
