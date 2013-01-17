@@ -7,7 +7,7 @@ class redmine::plugins {
   @redmine::plugin {
     'gitolite':
       name    => 'redmine_git_hosting',
-      url     => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/redmine_git_hosting.git',
+      url     => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-plugins-githosting.git',
       gems    => ['lockfile', 'inifile', 'net-ssh'],
       require => Class['gitolite'];
 
@@ -26,7 +26,7 @@ class redmine::plugins {
 
     'pastebin':
       name => 'redmine_pastebin',
-      url  => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/redmine_pastebin.git';
+      url  => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-plugins-pastebin.git';
 
     'dmsf':
       name => 'dmsf',
@@ -40,26 +40,26 @@ class redmine::plugins {
 
     'http_auth':
       name => 'redmine_http_auth',
-      url  => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/redmine_http_auth.git';
+      url  => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-plugins-httpauth.git';
 
     'kanban':
       name => 'redmine_kanban',
-      url  => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/redmine_kanban.git',
+      url  => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-plugins-kanban.git',
       gems => ['aasm', 'block_helpers'];
 
     'timesheet':
       name => 'timesheet_plugin',
-      url  => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/timesheet_plugin.git';
+      url  => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-plugins-timesheet.git';
 
     'webdav':
       name    => 'redmine_webdav',
-      url     => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/redmine_webdav.git',
+      url     => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-plugins-webdav.git',
       require => Redmine::Plugin['http_auth'],
       gems    => ['unicode', 'shared-mime-info'];
 
     'schedules':
       name => 'redmine_schedules',
-      url  => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/redmine_schedules.git',
+      url  => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-plugins-schedules.git',
       gems => ['holidays'];
 
     'knowledgebase':
@@ -123,13 +123,13 @@ class redmine::plugins {
 
     'sprints':
       name    => 'redmine_sprints',
-      url     => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/redmine_sprints.git',
+      url     => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-plugins-sprints.git',
       gems    => ['googlecharts', 'mini_magick'],
       require => Redmine::Plugin['attachment_fu'];
 
     'attachment_fu':
       name => 'attachment_fu',
-      url  => 'git+ssh://git@git.dev.inuits.be:2222/redmine-plugins/attachment_fu.git';
+      url  => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-plugins-attachmentfu.git';
 
     'periodic_tasks':
       name => 'Redmine_Periodic_Task',
