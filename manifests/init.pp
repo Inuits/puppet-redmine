@@ -24,9 +24,7 @@ class redmine (
 
   class {'::redmine::depends': } ->
   class {'::redmine::config': } ->
-  class {'::redmine::dbconf':
-      require => Service['mysqld'],
-  } ->
+  class {'::redmine::dbconf': } ->
   class {'::redmine::plugins': } ->
   class {'::redmine::themes': }
 
