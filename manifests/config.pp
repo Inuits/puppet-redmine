@@ -32,6 +32,6 @@ class redmine::config {
       provider    => 'shell',
       command     => 'rake generate_session_store',
       refreshonly => true,
-      require     => Package['gem_rails'];
+      require     => Class['redmine::depends'];
   }
 }
