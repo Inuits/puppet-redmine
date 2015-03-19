@@ -134,6 +134,11 @@ class redmine::plugins {
     'periodic_tasks':
       name => 'Redmine_Periodic_Task',
       url  => 'https://github.com/myneid/Redmine-Periodic-Task.git';
+
+    'tags':
+      name => 'redmine_tags',
+      url  => 'git+ssh://git@redmine.inuits.eu:2223/redmine/redmine-plugins/redmine-tags.git';
+
   }
 
   if $redmine::plugins != [] {
