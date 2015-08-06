@@ -1,5 +1,4 @@
 define redmine::plugin (
-  $name,
   $url,
   $plugin_dir = "${redmine::home}/vendor/plugins",
   $deps       = [],
