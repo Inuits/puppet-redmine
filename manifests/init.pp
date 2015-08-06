@@ -13,7 +13,7 @@ class redmine (
   $mail_domain = 'redmine.org',
   $mail_port = '587',
   $mail_smtp = 'smtp.redmine.org',
-  $mail_tls = 'true',
+  $mail_tls = true,
   $themes = [],
   $webserver_service = 'httpd',
   $version = 'latest',

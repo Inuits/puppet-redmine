@@ -1,17 +1,20 @@
 class redmine::depends {
+  $package_name = $::operatingsystem ? {
+    Centos    => 'redmine',
+    Debian    => 'redmine',
+    archlinux => 'redmine_client',
+  }
+  $package_provider = $::operatingsystem ? {
+    Centos  => 'yum',
+    Debian  => 'apt',
+    default => 'gem',
+  }
+
   package {
-    redmine:
+    'redmine':
       ensure    => $::redmine::version,
-      name      => $::operatingsystem ? {
-        Centos    => 'redmine',
-        Debian    => 'redmine',
-        archlinux => 'redmine_client',
-      },
-      provider  => $::operatingsystem ? {
-        default => "gem",
-        Centos  => 'yum',
-        Debian  => "apt",
-      },
+      name      => $package_name,
+      provider  => $package_provider,
       # require => [ User['redmine'], Class['apache::packages', 'mysql::packages'] ],
       before    => Exec['config_redmine_mysql_bootstrap'],
       notify    => Exec[
